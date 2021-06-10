@@ -4,6 +4,8 @@ import ResultsGrid from '../Components/ResultsGrid'
 
 const Container = styled.div`
   padding: 1.5rem 1rem;
+  background-color: #f5f6fc;
+  min-height: 83vh;
 
   @media (min-width:480px)  {
     padding: 1.5rem 10rem;

@@ -35,7 +35,7 @@ const ColorOption = styled.li`
     display: none;
   }
 
-  input[name='shape']:checked+label {
+  input[name='color']:checked+label {
     border: 3px solid #3d81f7;
     box-shadow: 0px 6px 40px rgba(61, 129, 247, 0.25);
   }
