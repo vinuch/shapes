@@ -6,7 +6,7 @@ import styled from 'styled-components';
   align-items: center;
   justify-content: space-between;
   background-color: white;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 1rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
   @media (min-width:480px)  {
