@@ -1,7 +1,9 @@
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { Dispatch, SetStateAction, useContext, useState } from 'react'
 import styled from 'styled-components';
+import { FilterContext } from '../Pages/Home';
 
 import data from '../utils/data.json'
+const {shapes, colors} = data
 
 const Subtitle = styled.h3`
   color: #3d81f7;
@@ -57,14 +59,7 @@ const ColorOption = styled.li`
 `
 
   const Filter: React.FC = () => {
-    const {shapes, colors} = data
-
-  const [shapesState, setShapesState] = useState<boolean[]>(
-    new Array(shapes.length).fill(false)
-  );
-  const [colorsState, setColorsState] = useState<boolean[]>(
-    new Array(colors.length).fill(false)
-  );
+    const {shapesState, colorsState, setShapesState, setColorsState} = useContext(FilterContext);
 
   const handleCheckboxOnChange = (position: number, checkboxState: boolean[], checkboxStateHandler: Dispatch<SetStateAction<boolean[]>>) => {
     const updatedCheckedState = checkboxState.map((item: boolean, index: number) =>
@@ -72,6 +67,11 @@ const ColorOption = styled.li`
     );
 
     checkboxStateHandler(updatedCheckedState);
+    if(checkboxState === shapesState) {
+      setShapesState(updatedCheckedState)
+    }else {
+      setColorsState(updatedCheckedState)
+    }
   };
   return (
     <>
@@ -108,3 +108,4 @@ const ColorOption = styled.li`
 }
 
 export default Filter;
+
