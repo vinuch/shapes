@@ -1,3 +1,4 @@
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import styled from 'styled-components';
 
 const Subtitle = styled.h3`
@@ -53,21 +54,35 @@ const ColorOption = styled.li`
 
 `
 
-
-
-
-export default function Navbar() {
-  const shapes: string[] = ['Oval', 'Round', 'Triangle', 'Square', 'Rectangle']
+  const Filter: React.FC = () => {
+  const shapesChoices: string[] = ['Oval', 'Round', 'Triangle', 'Square', 'Rectangle']
   const colors: {name: string, color: string}[] = [{name: 'red', color: 'red'}, {name: 'blue', color: '#1600ff'}, {name: 'green', color: '#008000'},{name: 'yellow', color: '#feff00'},{name: 'light Blue', color: '#b3cbfb'},{name: 'gray', color: '#999999'}]
+
+  const [shapesState, setShapesState] = useState<boolean[]>(
+    new Array(shapesChoices.length).fill(false)
+  );
+  const [colorsState, setColorsState] = useState<boolean[]>(
+    new Array(colors.length).fill(false)
+  );
+
+  const handleCheckboxOnChange = (position: number, checkboxState: boolean[], checkboxStateHandler: Dispatch<SetStateAction<boolean[]>>) => {
+    const updatedCheckedState = checkboxState.map((item: boolean, index: number) =>
+     index === position ? !item : item
+    );
+
+    checkboxStateHandler(updatedCheckedState);
+  };
   return (
     <>
       <h1>Filters</h1>
       <Subtitle>Shapes</Subtitle>
+      {/* {JSON.stringify(shapesState)} */}
       <ul style={{display: 'flex', flexWrap: 'wrap'}}>
         {
-          shapes.map((item: string )=> (
+          shapesChoices.map((item: string, index: number )=> (
             <ShapeOption>
-              <input type="checkbox" id={item} name="shape" value={item} />
+            
+              <input type="checkbox" id={item} name="shape" onChange={() => handleCheckboxOnChange(index, shapesState, setShapesState)} value={item} />
               <label htmlFor={item}> {item} </label>
             </ShapeOption>
 
@@ -76,11 +91,12 @@ export default function Navbar() {
       </ul>
 
       <Subtitle>Colors</Subtitle>
+      {/* {JSON.stringify(colorsState)} */}
       <ul style={{display: 'flex', flexWrap: 'wrap'}}>
         {
-          colors.map((item: {name: string, color: string} )=> (
+          colors.map((item: {name: string, color: string}, index: number )=> (
             <ColorOption color={item.color}>
-              <input type="checkbox" id={item.name} name="color" value={item.name} />
+              <input type="checkbox" id={item.name} name="color" value={item.name} onChange={() => handleCheckboxOnChange(index, colorsState, setColorsState)} />
               <label htmlFor={item.name}></label>
             </ColorOption>
           ))
@@ -89,3 +105,5 @@ export default function Navbar() {
     </>
   )
 }
+
+export default Filter;
