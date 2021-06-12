@@ -1,0 +1,22 @@
+{
+  "shapes": ["Oval", "Round", "Triangle", "Square", "Rectangle"],
+  "colors": [{
+    "name": "red", 
+    "color": "red"
+  }, {
+    "name": "blue", 
+    "color": "#1600ff"
+  }, {
+    "name": "green", 
+    "color": "#008000"
+  },{
+    "name": "yellow", 
+    "color": "#feff00"
+  },{
+    "name": "light Blue", 
+    "color": "#b3cbfb"
+  },{
+    "name": "gray", 
+    "color": "#999999"
+}]
+}

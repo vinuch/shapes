@@ -1,6 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import styled from 'styled-components';
 
+import data from '../utils/data.json'
+
 const Subtitle = styled.h3`
   color: #3d81f7;
   font-size: 16px;
@@ -55,11 +57,10 @@ const ColorOption = styled.li`
 `
 
   const Filter: React.FC = () => {
-  const shapesChoices: string[] = ['Oval', 'Round', 'Triangle', 'Square', 'Rectangle']
-  const colors: {name: string, color: string}[] = [{name: 'red', color: 'red'}, {name: 'blue', color: '#1600ff'}, {name: 'green', color: '#008000'},{name: 'yellow', color: '#feff00'},{name: 'light Blue', color: '#b3cbfb'},{name: 'gray', color: '#999999'}]
+    const {shapes, colors} = data
 
   const [shapesState, setShapesState] = useState<boolean[]>(
-    new Array(shapesChoices.length).fill(false)
+    new Array(shapes.length).fill(false)
   );
   const [colorsState, setColorsState] = useState<boolean[]>(
     new Array(colors.length).fill(false)
@@ -76,10 +77,10 @@ const ColorOption = styled.li`
     <>
       <h1>Filters</h1>
       <Subtitle>Shapes</Subtitle>
-      {/* {JSON.stringify(shapesState)} */}
+      {JSON.stringify(shapesState)}
       <ul style={{display: 'flex', flexWrap: 'wrap'}}>
         {
-          shapesChoices.map((item: string, index: number )=> (
+          shapes.map((item: string, index: number )=> (
             <ShapeOption>
             
               <input type="checkbox" id={item} name="shape" onChange={() => handleCheckboxOnChange(index, shapesState, setShapesState)} value={item} />
@@ -91,7 +92,7 @@ const ColorOption = styled.li`
       </ul>
 
       <Subtitle>Colors</Subtitle>
-      {/* {JSON.stringify(colorsState)} */}
+      {JSON.stringify(colorsState)}
       <ul style={{display: 'flex', flexWrap: 'wrap'}}>
         {
           colors.map((item: {name: string, color: string}, index: number )=> (
