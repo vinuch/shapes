@@ -21,7 +21,8 @@ const FilterItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 1rem 1rem 0;
+  box-shadow: 3px 3px 19px #0000003d;
+  margin: 0 1rem 1.5rem 0;
 
   svg {
     width: 90%;
@@ -30,18 +31,37 @@ const FilterItem = styled.li`
 
   @media (min-width:480px)  {
     width: 15%;
-    margin: 0 2rem 1rem 0;
+    margin: 0 2rem 1.5rem 0;
   }
 `
 
 export default function ResultsGrid() {
   const {shapesState, colorsState} = useContext(FilterContext);
-
+  const allShapes = shapesState.every(item => item === true )
+  const allColors = colorsState.every(item => item === true )
+  const someShapes = shapesState.some(item => item === true ) && !shapesState.every(item => item === true )
+  const someColors = colorsState.some(item => item === true) && !colorsState.every(item => item === true )
+  const singleColor = colorsState.filter(item => item === true ).length === 1
+  const singleShape = shapesState.filter(item => item === true ).length === 1
   
 
   return (
     <div>
-      <h1>All Items. (6)</h1>
+      <h1>
+        { 
+          allShapes && allColors ? 'All items' : 
+          singleColor && singleShape  ? `${shapes[shapesState.findIndex(item => item)]} ${colors[colorsState.findIndex(item => item)].name} items` : 
+          someColors && singleShape  ? `Multiple ${shapes[shapesState.findIndex(item => item)]} items` :
+          allShapes && singleColor ? `All ${colors[colorsState.findIndex(item => item)].name} items` :
+          singleShape && allColors ? `All ${shapes[shapesState.findIndex(item => item)]} items` :
+          someShapes && singleColor ? `Multiple ${colors[colorsState.findIndex(item => item)].name} items` : 
+          (allShapes && someColors) || (allColors && someShapes) ? 'Multiple items' :
+          someShapes && someColors ? 'Multiple items' :
+          null
+
+        }
+      </h1>
+      {/* {JSON.stringify(shapesState)} */}
 
       <FilterList>
         {
