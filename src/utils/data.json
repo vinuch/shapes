@@ -18,5 +18,8 @@
   },{
     "name": "gray", 
     "color": "#999999"
+},{
+  "name": "black", 
+  "color": "#000"
 }]
 }

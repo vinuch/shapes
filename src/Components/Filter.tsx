@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useContext, useState } from 'react'
+import React, { Dispatch, SetStateAction, useContext } from 'react'
 import styled from 'styled-components';
 import { FilterContext } from '../Pages/Home';
 
@@ -77,13 +77,13 @@ const ColorOption = styled.li`
     <>
       <h1>Filters</h1>
       <Subtitle>Shapes</Subtitle>
-      {JSON.stringify(shapesState)}
+      {/* {JSON.stringify(shapesState)} */}
       <ul style={{display: 'flex', flexWrap: 'wrap'}}>
         {
           shapes.map((item: string, index: number )=> (
             <ShapeOption>
             
-              <input type="checkbox" id={item} name="shape" onChange={() => handleCheckboxOnChange(index, shapesState, setShapesState)} value={item} />
+              <input type="checkbox" id={item} name="shape" onChange={() => handleCheckboxOnChange(index, shapesState, setShapesState)} checked={shapesState[index]} />
               <label htmlFor={item}> {item} </label>
             </ShapeOption>
 
@@ -92,12 +92,12 @@ const ColorOption = styled.li`
       </ul>
 
       <Subtitle>Colors</Subtitle>
-      {JSON.stringify(colorsState)}
+      {/* {JSON.stringify(colorsState)} */}
       <ul style={{display: 'flex', flexWrap: 'wrap'}}>
         {
           colors.map((item: {name: string, color: string}, index: number )=> (
             <ColorOption color={item.color}>
-              <input type="checkbox" id={item.name} name="color" value={item.name} onChange={() => handleCheckboxOnChange(index, colorsState, setColorsState)} />
+              <input type="checkbox" id={item.name} name="color" checked={colorsState[index]}  onChange={() => handleCheckboxOnChange(index, colorsState, setColorsState)} />
               <label htmlFor={item.name}></label>
             </ColorOption>
           ))

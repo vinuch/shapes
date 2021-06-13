@@ -30,8 +30,8 @@ export const FilterContext = React.createContext<IFilterContext>({
 );
 
 export default function Home() {
-  const [shapesState, setShapesState] = useState<boolean[]>(new Array(shapes.length).fill(false))
-  const [colorsState, setColorsState] = useState<boolean[]>(new Array(shapes.length).fill(false))
+  const [shapesState, setShapesState] = useState<boolean[]>(new Array(shapes.length).fill(true))
+  const [colorsState, setColorsState] = useState<boolean[]>(new Array(colors.length).fill(true))
 
   return (
     <Container>

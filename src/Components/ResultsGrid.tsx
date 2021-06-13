@@ -1,4 +1,8 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { FilterContext } from "../Pages/Home";
+
+import {shapes, colors} from '../utils/data.json'
 
 const FilterList = styled.ul`
   display: flex;
@@ -31,64 +35,114 @@ const FilterItem = styled.li`
 `
 
 export default function ResultsGrid() {
-  const results: {shape: string
- ;   color: string}[] = [{shape: 'Round', color: 'red'},{shape: 'Rectangle', color: 'blue'}, {shape: 'Triangle', color: '#1600ff'}, {shape: 'Square', color: '#008000'},{shape: 'Oval', color: '#feff00'},{shape: 'Oval', color: '#b3cbfb'},{shape: 'Oval', color: '#999999'}, {shape: 'Rectangle', color: '#000'}]
+  const {shapesState, colorsState} = useContext(FilterContext);
+
+  
 
   return (
     <div>
-      <h1>All Oval Items. (6)</h1>
+      <h1>All Items. (6)</h1>
+
       <FilterList>
         {
-          results.map(item => {
-            
-            switch(item.shape) {
+        shapes.map((item, index) => {
+
+            switch(item) {
               case 'Oval':
-                return (
-                  <FilterItem>
-                    <svg viewBox="0 0 154 196" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <ellipse cx="75" cy="98" rx="75" ry="98" fill={item.color}/>
-                    </svg>
-                  </FilterItem>
-                );
+                if(shapesState[index]){
+                return colors.map((item, index) => {
+                  if(colorsState[index]){
+                    return (
+                      <FilterItem>
+                        <svg viewBox="0 0 154 196" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="75" cy="98" rx="75" ry="98" fill={item.color}/>
+                        </svg>
+                    </FilterItem>
+                    )
+                  }
+                  return false
+                
+                });
+                };
+              break;
+      
               case 'Round':
-                return (
-                  <FilterItem>
-                    <svg fill="none" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="100" cy="100" r="100" fill={item.color}/>
-                    </svg>
-                    
-                  </FilterItem>
-                );
+                if(shapesState[index]){
+                return colors.map((item, index) => {
+                  if(colorsState[index]){
+                    return (
+                      <FilterItem>
+                        <svg fill="none" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="100" cy="100" r="100" fill={item.color}/>
+                        </svg>
+                        
+                      </FilterItem>
+                    )
+                  }
+                  return false
+
+
+                });
+                };
+              break;
               case 'Triangle':
-                return (
-                  <FilterItem>
-                    <svg width="214" height="185" viewBox="0 0 214 185" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M107 0L213.521 184.5H0.478874L107 0Z" fill={item.color}/>
-                    </svg>
-                    
-                  </FilterItem>
-                );
+                if(shapesState[index]){
+                return colors.map((item, index) => {
+                  if(colorsState[index]){
+                    return (
+                      <FilterItem>
+                        <svg width="214" height="185" viewBox="0 0 214 185" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M107 0L213.521 184.5H0.478874L107 0Z" fill={item.color}/>
+                        </svg>
+                        
+                      </FilterItem>
+                    )
+                  }
+                  return false
+                 
+                });
+                };
+              break;
               case 'Square':
-                return (
-                  <FilterItem>
-                    <svg width="150" height="150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill={item.color} d="M0 0h196v196H0z"/>
-                    </svg>
-                    
-                  </FilterItem>
-                );
+                if(shapesState[index]){
+                return colors.map((item, index) => {
+                  if(colorsState[index]){
+                    return (
+                      <FilterItem>
+                        <svg width="150" height="150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill={item.color} d="M0 0h196v196H0z"/>
+                        </svg>
+                          
+                      </FilterItem>
+                    )
+                  }
+                  return false
+                  
+                });
+                };
+              break;
               case 'Rectangle':
-                return (
-                  <FilterItem>
-                    <svg fill="none" xmlns="http://www.w3.org/2000/svg" style={{width: '65%'}}>
-                      <path fill={item.color} d="M0 0h347v196H0z"/>
-                    </svg>
-                    
-                  </FilterItem>
-                );
+                if(shapesState[index]){
+                return colors.map((item, index) => {
+                  if(colorsState[index]){
+                    return (
+                      <FilterItem>
+                        <svg fill="none" xmlns="http://www.w3.org/2000/svg" style={{width: '65%'}}>
+                          <path fill={item.color} d="M0 0h347v196H0z"/>
+                        </svg>
+                        
+                      </FilterItem>
+                    )
+                  }
+                  return false
+                  
+                });
+                };
+              break;
               default:
                 return false
-            }            
+            }  
+            return false
             
           })
         }
