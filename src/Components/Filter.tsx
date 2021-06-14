@@ -80,7 +80,7 @@ const ColorOption = styled.li`
       <ul style={{display: 'flex', flexWrap: 'wrap'}}>
         {
           shapes.map((item: string, index: number )=> (
-            <ShapeOption>
+            <ShapeOption key={`${item}-${index}`}>
             
               <input type="checkbox" id={item} name="shape" onChange={() => handleCheckboxOnChange(index, shapesState, setShapesState)} checked={shapesState[index]} />
               <label htmlFor={item}> {item} </label>
@@ -94,7 +94,7 @@ const ColorOption = styled.li`
       <ul style={{display: 'flex', flexWrap: 'wrap'}}>
         {
           colors.map((item: {name: string, color: string}, index: number )=> (
-            <ColorOption color={item.color}>
+            <ColorOption color={item.color} key={`${item.color}-${index}`}>
               <input type="checkbox" id={item.name} name="color" checked={colorsState[index]}  onChange={() => handleCheckboxOnChange(index, colorsState, setColorsState)} />
               <label htmlFor={item.name}></label>
             </ColorOption>

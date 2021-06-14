@@ -85,6 +85,7 @@ export default function Login({setLoggedIn}: {setLoggedIn: React.Dispatch<React.
       <form onSubmit={(e) => handleLogin(e)}>
         <div>
           <Title>Login</Title>
+          <p style={{textAlign: 'center', fontSize: '12px', color: 'gray'}}>use any details</p>
           <div>
             <InputLabel htmlFor="name">Username</InputLabel><br />
             <InputField type="text" name="name" id="name" value={username} onChange={(e) => setUsername(e.target.value)} required/>
