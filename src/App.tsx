@@ -1,8 +1,9 @@
-import React from 'react';
+import { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+
   // Link
 } from "react-router-dom";
 
@@ -15,17 +16,22 @@ import Signup from './Pages/Signup';
 
 
 function App() {
+  const [isLoggedIn, setLoggedIn] = useState<boolean>(localStorage.getItem('user') ? true :false)
+
+
+
   return (
     <Router>
     <div className="App">
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} user={localStorage.getItem('user')  || ''}/>
 
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home isLoggedIn={isLoggedIn} />
         </Route>
-        <Route path="/login">
-          <Login />
+
+        <Route path="/login" >
+          <Login setLoggedIn={setLoggedIn}  />
         </Route>
         <Route path="/signup">
           <Signup />

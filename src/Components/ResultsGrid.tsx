@@ -19,6 +19,7 @@ const FilterItem = styled.li`
   background-color: #fff;
   padding: 2rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   box-shadow: 3px 3px 19px #0000003d;
@@ -160,6 +161,23 @@ export default function ResultsGrid() {
                 };
               break;
               default:
+                if(shapesState[index]){
+                  return colors.map((item, colorIndex) => {
+                    if(colorsState[colorIndex]){
+                      return (
+                        <FilterItem>
+                           <svg width="214" height="185" viewBox="0 0 214 185" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M107 0L213.521 184.5H0.478874L107 0Z" fill={item.color}/>
+                          </svg>
+                          <p style={{width: '100%', textAlign: 'center'}}>{shapes[index]}</p>
+                        
+                        </FilterItem>
+                      )
+                    }
+                    return false
+                    
+                  });
+                  }
                 return false
             }  
             return false

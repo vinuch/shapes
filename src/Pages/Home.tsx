@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import styled from 'styled-components'
 import Filter from '../Components/Filter'
 import ResultsGrid from '../Components/ResultsGrid'
@@ -22,6 +24,7 @@ type IFilterContext = {
   shapesState: boolean[], 
   setShapesState: React.Dispatch<React.SetStateAction<boolean[]>>
 };
+
 export const FilterContext = React.createContext<IFilterContext>({
   colorsState: [], 
   setColorsState: () => null, 
@@ -29,16 +32,24 @@ export const FilterContext = React.createContext<IFilterContext>({
   setShapesState: () => null}
 );
 
-export default function Home() {
+export default function Home({isLoggedIn}: {isLoggedIn: boolean}) {
   const [shapesState, setShapesState] = useState<boolean[]>(new Array(shapes.length).fill(true))
   const [colorsState, setColorsState] = useState<boolean[]>(new Array(colors.length).fill(true))
+  const history = useHistory();
+  useEffect(() => {
+    if (!isLoggedIn){
+      history.push('/login')
+    }
+  }, [isLoggedIn, history])
+    
+    return (
+      <Container>
+        <FilterContext.Provider value={{shapesState, colorsState, setShapesState, setColorsState}}>
+          <Filter />
+          <ResultsGrid />
+        </FilterContext.Provider>
+      </Container>
 
-  return (
-    <Container>
-      <FilterContext.Provider value={{shapesState, colorsState, setShapesState, setColorsState}}>
-        <Filter />
-        <ResultsGrid />
-      </FilterContext.Provider>
-    </Container>
-  )
+    )
+
 }

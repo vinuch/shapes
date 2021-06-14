@@ -1,5 +1,5 @@
 {
-  "shapes": ["Oval", "Round", "Triangle", "Square", "Rectangle"],
+  "shapes": ["Oval", "Round", "Triangle", "Square", "Rectangle",  "polygon"],
   "colors": [{
     "name": "red", 
     "color": "red"

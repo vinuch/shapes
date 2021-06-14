@@ -77,7 +77,6 @@ const ColorOption = styled.li`
     <>
       <h1>Filters</h1>
       <Subtitle>Shapes</Subtitle>
-      {/* {JSON.stringify(shapesState)} */}
       <ul style={{display: 'flex', flexWrap: 'wrap'}}>
         {
           shapes.map((item: string, index: number )=> (
@@ -92,7 +91,6 @@ const ColorOption = styled.li`
       </ul>
 
       <Subtitle>Colors</Subtitle>
-      {/* {JSON.stringify(colorsState)} */}
       <ul style={{display: 'flex', flexWrap: 'wrap'}}>
         {
           colors.map((item: {name: string, color: string}, index: number )=> (
